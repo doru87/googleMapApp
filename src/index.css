@@ -1,0 +1,81 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+.filterButton {
+  position: absolute;
+  top: 100px;
+  right: 50px;
+  z-index: 10;
+}
+.filterCardInfo {
+  position: absolute;
+  top: 150px;
+  right: 50px;
+  z-index: 10;
+}
+.addSpot {
+  position: absolute;
+  top: 70px;
+  z-index: 10;
+  margin: 0 auto;
+  right: 0;
+  left: 0;
+  width: 200px;
+}
+.cancelHref {
+  margin-right: 10px;
+  margin-top: 10px;
+}
+.confirmHref {
+  margin-top: 10px;
+}
+.datePicker1 {
+  width: 60%;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+.datePicker2 {
+  width: 60%;
+  margin-left: 15px;
+  margin-bottom: 5px;
+}
+.containerSearch {
+  width: 60%;
+  margin-top: 50px;
+  margin-left: 50px;
+}
+.titleCard {
+  font-size: "12px";
+  font-weight: 900;
+}
+.searchField {
+  width: 20%;
+  margin-bottom: 20px;
+}
+.loginWrapper {
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.formLogin {
+  width: 500px;
+}
+.imageFavourite {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+}
+.fontUsername {
+  font-family: "Brush Script MT";
+  font-size: 26px;
+}
