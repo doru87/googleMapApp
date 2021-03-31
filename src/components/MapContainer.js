@@ -37,36 +37,47 @@ export function MapContainer(props) {
   const [filterCardOpen, setfilterCardOpen] = React.useState(false);
   const [dataFilterCard, setDataFilterCard] = React.useState(" ");
   const [addSpotOpen, setAddSpotOpen] = React.useState(false);
-  const [location, setLocation] = React.useState("");
+  const [location, setLocation] = React.useState(" ");
   const [resultLocation, setResultLocation] = React.useState({});
   const [cardInfoOpen, setCardInfoOpen] = React.useState(false);
   const [dataFromLoginApi, setDataFromLoginApi] = React.useState([]);
   const [logoutOpen, setLogoutOpen] = React.useState(false);
   const [dataFavouritesFromApi, setDataFavouritesFromApi] = React.useState([]);
+  const [userLogged, setUserLogged] = React.useState([]);
+  const [users, setUsers] = React.useState([]);
 
   React.useEffect(() => {
     const data = async () => {
       await axios
-        .get("https://6059f34db11aba001745d2c8.mockapi.io/spot")
-        .then((response) => setDataFromApi(response.data));
+        .get("https://6059f34db11aba001745d2c8.mockapi.io/login")
+        .then((response) => {
+          setDataFromLoginApi(response.data);
+          return axios.get("https://6059f34db11aba001745d2c8.mockapi.io/spot");
+        })
+        .then((response) => {
+          setDataFromApi(response.data);
+          return axios.get("https://6059f34db11aba001745d2c8.mockapi.io/user");
+        })
+        .then((response) => {
+          setUsers(response.data);
+        })
+        .catch((error) => console.log(error.response));
     };
     data();
   }, []);
 
-  React.useEffect(() => {
-    const getData = async () => {
-      await axios
-        .get("https://6059f34db11aba001745d2c8.mockapi.io/login")
-        .then((response) => {
-          setDataFromLoginApi(response.data);
-        });
-    };
-    getData();
-  }, []);
+  var dataApi = dataFromLoginApi.slice(-1);
+  var lastLoginUser = Object.assign({}, ...dataApi);
 
-  var datApi = dataFromLoginApi.slice(-1);
-  var lastLogin = Object.assign({}, ...datApi);
-  localStorage.setItem("user", lastLogin.username);
+  React.useEffect(() => {
+    users.map((data) => {
+      if (data.id == lastLoginUser.userId) {
+        setUserLogged(data);
+      }
+    });
+  }, [lastLoginUser]);
+
+  localStorage.setItem("user", userLogged.name);
 
   const getIdCard = (event) => {
     setCardId(event.nativeEvent.path[2].id);
@@ -156,7 +167,7 @@ export function MapContainer(props) {
         <Navbar bg="light" expand="lg">
           <Nav className="mr-auto mr-5 fontUsername">
             <Form inline>
-              <Form.Label>{lastLogin.username}</Form.Label>
+              <Form.Label>{userLogged.name}</Form.Label>
             </Form>
           </Nav>
           <Nav className="ml-auto mr-3 ">
