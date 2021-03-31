@@ -42,7 +42,6 @@ export function MapContainer(props) {
   const [cardInfoOpen, setCardInfoOpen] = React.useState(false);
   const [dataFromLoginApi, setDataFromLoginApi] = React.useState([]);
   const [logoutOpen, setLogoutOpen] = React.useState(false);
-  const [messageSearchLocation, setMessageSearchLocation] = React.useState("");
   const [dataFavouritesFromApi, setDataFavouritesFromApi] = React.useState([]);
 
   React.useEffect(() => {
@@ -120,11 +119,6 @@ export function MapContainer(props) {
       if (dataApi.name.toLowerCase() == location.toLowerCase()) {
         setCoordinates(coords);
         setZoom(8);
-        const message = "";
-        setMessageSearchLocation(message);
-      } else {
-        const message = "Location not found";
-        setMessageSearchLocation(message);
       }
     });
   };
@@ -266,7 +260,6 @@ export function MapContainer(props) {
               getData={GetDataFromSearchLocation}
               resultLocation={resultLocation}
               changeCenter={changeCenter}
-              messageSearchLocation={messageSearchLocation}
             />
           </div>
           <TableSpots
