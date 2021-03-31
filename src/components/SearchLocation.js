@@ -26,9 +26,6 @@ export default function SearchLocation({
         {({ getInputProps, suggestions, getSuggestionItemProps }) => (
           <Container>
             <Row>
-              <Card.Title className="mb-2">{messageSearchLocation}</Card.Title>
-            </Row>
-            <Row>
               <Col sm={8}>
                 <Form.Control
                   type="text"
