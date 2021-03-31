@@ -8,7 +8,7 @@ export default function SearchLocation({
   resultLocation,
   messageSearchLocation,
 }) {
-  const [location, setLocation] = React.useState();
+  const [location, setLocation] = React.useState(" ");
 
   const handleSelect = async (value) => {
     setLocation(value.split(",")[0]);
@@ -33,25 +33,28 @@ export default function SearchLocation({
                   {...getInputProps({ placeholder: "Type location (city)" })}
                   defaultValue={location}
                 />
-                {suggestions.map((suggestion) => {
+                {suggestions.map((suggestion, index) => {
                   const style = {
                     backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
                   };
                   return (
-                    <div {...getSuggestionItemProps(suggestion, { style })}>
+                    <div
+                      key={index}
+                      {...getSuggestionItemProps(suggestion, { style })}
+                    >
                       {suggestion.description}
                     </div>
                   );
                 })}
               </Col>
-              <Col sm={4}>
-                <Button
-                  variant="dark"
-                  onClick={() => changeCenter(resultLocation, location)}
-                >
-                  Search
-                </Button>
-              </Col>
+              <Button
+                size="sm"
+                style={{ height: "37px" }}
+                variant="dark"
+                onClick={() => changeCenter(resultLocation, location)}
+              >
+                Search
+              </Button>
             </Row>
           </Container>
         )}
@@ -59,3 +62,4 @@ export default function SearchLocation({
     </div>
   );
 }
+
